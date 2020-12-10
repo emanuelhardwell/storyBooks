@@ -11,14 +11,12 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 // required
-
-/* load env */
-dotenv.config({ path: "./configs/config.env" });
+dotenv.config({ path: "./src/configs/config.env" });
+require("./configs/db");
 
 // config the app
 const app = express();
 
-//config the port
 app.set("port", process.env.PORT || 3000);
 
 // config the engine
@@ -44,6 +42,11 @@ app.use(express.json());
 
 // static files
 app.use(express.static(path.join(__dirname, "public")));
+
+// get routes
+app.use("/", require("./routes/index.routes"));
+app.use("/auth", require("./routes/auth.routes"));
+app.use("/stories", require("./routes/stori.routes"));
 
 // listen the server
 app.listen(
