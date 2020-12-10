@@ -1,0 +1,39 @@
+{
+  "name": "storyBooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node src/app",
+    "dev": "cross-env NODE_ENV=development nodemon src/app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emanuelhardwell/storyBooks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emanuelhardwell/storyBooks/issues"
+  },
+  "homepage": "https://github.com/emanuelhardwell/storyBooks#readme",
+  "dependencies": {
+    "connect-mongo": "^3.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "fs-extra": "^9.0.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.11.6",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "timeago.js": "^4.0.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.6"
+  }
+}
