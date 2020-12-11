@@ -27,7 +27,7 @@ app.engine(
     defaultLayout: "main",
     layoutsDir: path.join(app.get("views"), "layouts"),
     partialsDir: path.join(app.get("views"), "partials"),
-    helpers: path.join(__dirname, "helpers/helper"),
+    helpers: require("./helpers/helper"),
     extname: ".hbs",
   })
 );
@@ -44,9 +44,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // get routes
-app.use("/", require("./routes/index.routes"));
+app.use(require("./routes/index.routes"));
 app.use("/auth", require("./routes/auth.routes"));
-app.use("/stories", require("./routes/stori.routes"));
+app.use("/stories", require("./routes/story.routes"));
 
 // listen the server
 app.listen(
