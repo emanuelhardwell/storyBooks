@@ -9,10 +9,12 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const passport = require("passport");
+const MongoStore = require("connect-mongo")(session);
 
 // required
 dotenv.config({ path: "./src/configs/config.env" });
 require("./configs/db");
+require("./configs/passport");
 
 // config the app
 const app = express();
@@ -39,6 +41,23 @@ if (process.env.NODE_ENV === "development") {
 }
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(
+  session({
+    secret: "hardwell",
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+// global variables
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+});
 
 // static files
 app.use(express.static(path.join(__dirname, "public")));
