@@ -32,7 +32,7 @@ controller.deleteStory = async (req, res) => {
 
 controller.showFormEditStory = async (req, res) => {
   try {
-    const searchStory = await Story.findById(req.params.id).lean();
+    const searchStory = await Story.findOne({ _id: req.params.id }).lean();
     res.render("stories/edit", { searchStory });
   } catch (error) {
     console.log(error);
@@ -40,8 +40,19 @@ controller.showFormEditStory = async (req, res) => {
   }
 };
 
-controller.editStory = (req, res) => {
-  res.send("Ok");
+controller.editStory = async (req, res) => {
+  try {
+    const { title, status, body } = req.body;
+    await Story.findByIdAndUpdate(req.params.id, {
+      title,
+      status,
+      body,
+    }).lean();
+    res.redirect("/dashboard");
+  } catch (error) {
+    console.log(error);
+    re.render("errors/500");
+  }
 };
 
 controller.showAllStory = async (req, res) => {

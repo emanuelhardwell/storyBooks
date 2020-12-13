@@ -8,7 +8,7 @@
                     <h5>Add story</h5>
                 </div>
                 <div class="card-body">
-                    <form action="/stories/edit/{{_id}}" method="post">
+                    <form action="/stories/edit/{{searchStory._id}}" method="post">
                         <div class="form-floating mb-3">
                             <input type="text" name="title" placeholder="Title" value="{{searchStory.title}}"
                                 class="form-control">
@@ -16,14 +16,16 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" name="status" aria-label="Default select example">
+                                {{#select searchStory.status}}
                                 <option selected value="public">Public</option>
                                 <option value="private">Private</option>
+                                {{/select}}
                             </select>
                             <label for="floatingSelect">Status:</label>
                         </div>
                         <div class="form-floating mb-3">
                             <textarea name="body" placeholder="Body"
-                                class="form-control">{{searchStory.title}}</textarea>
+                                class="form-control">{{searchStory.body}}</textarea>
                             <label for="body">Body</label>
                         </div>
                         <div class="mb-3">
