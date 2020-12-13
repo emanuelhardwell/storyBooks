@@ -6,4 +6,6 @@ router.get("/add", stories.showFormStory);
 
 router.post("/add", stories.addStory);
 
+router.get("/delete/:id", stories.deleteStory);
+
 module.exports = router;

@@ -20,4 +20,14 @@ controller.addStory = async (req, res) => {
   }
 };
 
+controller.deleteStory = async (req, res) => {
+  try {
+    await Story.findByIdAndDelete(req.params.id);
+    res.redirect("/dashboard");
+  } catch (error) {
+    console.log(error);
+    res.render("errors/500");
+  }
+};
+
 module.exports = controller;
