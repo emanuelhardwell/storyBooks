@@ -4,5 +4,9 @@
 body {
   background: radial-gradient(rgb(61, 57, 57), rgb(34, 32, 32));
   min-height: 100vh;
-  font-family: "Oswald", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+.img {
+  width: 25%;
 }
