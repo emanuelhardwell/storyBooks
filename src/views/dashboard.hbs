@@ -1,11 +1,37 @@
 {{!-- --}}
 {{!-- --}}
-<div class="container">
+<div class="container mt-4">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-10 mx-auto">
             <div class="card">
-                <div class="card-header">
-                    <h4>hola bebe</h4>
+                <div class="card-body">
+                    {{#if stories}}
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>Title</td>
+                                <td>Description</td>
+                                <td>Date</td>
+                                <td>Actions</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each stories}}
+                            <tr>
+                                <td>{{title}}</td>
+                                <td>{{body}}</td>
+                                <td>{{ timeago createdAt}}</td>
+                                <td>
+                                    <a href="/stories/edit/{{_id}}" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="/stories/delete/{{_id}}" class="btn btn-danger btn-sm">Edit</a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    {{else}}
+                    <h4>no hay nada</h4>
+                    {{/if}}
                 </div>
             </div>
         </div>

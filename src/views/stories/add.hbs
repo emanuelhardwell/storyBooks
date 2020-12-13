@@ -1,0 +1,35 @@
+{{!-- --}}
+{{!-- --}}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-header text-center bg-primary text-white">
+                    <h5>Add story</h5>
+                </div>
+                <div class="card-body">
+                    <form action="/stories/add" method="post">
+                        <div class="form-floating mb-3">
+                            <input type="text" name="title" placeholder="Title" class="form-control">
+                            <label for="title">Title</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" name="status" aria-label="Default select example">
+                                <option selected value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                            <label for="floatingSelect">Status:</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea name="body" placeholder="Body" class="form-control"></textarea>
+                            <label for="body">Body</label>
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-primary w-100">Save Story</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
