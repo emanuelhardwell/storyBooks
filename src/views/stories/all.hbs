@@ -3,7 +3,7 @@
 <div class="container mt-4">
     <div class="row">
         {{#each allStory}}
-        <div class="col-md-4 m-1">
+        <div class="col-md-4 mb-1">
             <div class="card">
                 <div class="text-center">
                     <img src="{{user.image}}" alt="image user" class="img-thumbnail img">
@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <h5 class="text-center fw-bold">{{title}}</h5>
-                        <p>{{body}}</p>
+                        <p>{{ stripTags (truncate body 150)}}</p>
                         <a href="/stories/{{_id}}" class="btn btn-success">Read More</a>
                         <footer class="blockquote-footer text-end">{{timeago createdAt}}</footer>
                     </blockquote>
