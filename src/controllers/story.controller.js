@@ -10,14 +10,26 @@ controller.showFormAddStory = (req, res) => {
 };
 
 controller.addStory = async (req, res) => {
-  try {
-    req.body.user = req.user.id;
-    await Story.create(req.body);
-    req.flash("successMessage", "Story added successfully");
-    res.redirect("/dashboard");
-  } catch (error) {
-    console.log(error);
-    res.render("errors/500");
+  const { title, body } = req.body;
+  let errors = [];
+  if (!title) {
+    errors.push({ text: "Title is required" });
+  }
+  if (!body) {
+    errors.push({ text: "Description is required" });
+  }
+  if (errors.length > 0) {
+    res.render("stories/add", { errors, title, body });
+  } else {
+    try {
+      req.body.user = req.user.id;
+      await Story.create(req.body);
+      req.flash("successMessage", "Story added successfully");
+      res.redirect("/dashboard");
+    } catch (error) {
+      console.log(error);
+      res.render("errors/500");
+    }
   }
 };
 
@@ -43,18 +55,31 @@ controller.showFormEditStory = async (req, res) => {
 };
 
 controller.editStory = async (req, res) => {
-  try {
-    const { title, status, body } = req.body;
-    await Story.findByIdAndUpdate(req.params.id, {
-      title,
-      status,
-      body,
-    }).lean();
-    req.flash("successMessage", "Story edited successfully");
+  const { title, body } = req.body;
+  let errors = [];
+  if (!title) {
+    errors.push({ text: "Title in update is required" });
+  }
+  if (!body) {
+    errors.push({ text: "Description in update is required" });
+  }
+  if (errors.length > 0) {
+    req.flash("errorMessage", "Story not updated because vat blank");
     res.redirect("/dashboard");
-  } catch (error) {
-    console.log(error);
-    re.render("errors/500");
+  } else {
+    try {
+      const { title, status, body } = req.body;
+      await Story.findByIdAndUpdate(req.params.id, {
+        title,
+        status,
+        body,
+      }).lean();
+      req.flash("successMessage", "Story edited successfully");
+      res.redirect("/dashboard");
+    } catch (error) {
+      console.log(error);
+      re.render("errors/500");
+    }
   }
 };
 
