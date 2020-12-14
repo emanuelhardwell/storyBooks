@@ -4,13 +4,11 @@
     <div class="row">
         {{#each allStory}}
         <div class="col-md-4 mb-1">
-            <div class="card">
-                <div class="text-center">
-                    <img src="{{user.image}}" alt="image user" class="img-thumbnail img">
-                    <a href="/stories/user/{{user._id}}">
-                        {{user.displayName}}
-                    </a>
-                </div>
+            <div class="card pt-3">
+                <a href="/stories/user/{{user._id}}" class="mx-auto text-decoration-none">
+                    {{user.displayName}}
+                </a>
+                <img src="{{user.image}}" alt="image user" class="img-thumbnail img mx-auto">
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <h5 class="text-center fw-bold">{{title}}</h5>
