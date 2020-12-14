@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const exphbs = require("express-handlebars");
 const morgan = require("morgan");
 const methodOverride = require("method-override");
+const flash = require("connect-flash");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -53,8 +54,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(flash());
+
 // global variables
 app.use((req, res, next) => {
+  res.locals.successMessage = req.flash("successMessage");
+  res.locals.errorMessage = req.flash("errorMessage");
+  res.locals.error = req.flash("error"); /* este pertenece a passport */
   res.locals.user = req.user || null;
   next();
 });

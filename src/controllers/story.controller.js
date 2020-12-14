@@ -13,6 +13,7 @@ controller.addStory = async (req, res) => {
   try {
     req.body.user = req.user.id;
     await Story.create(req.body);
+    req.flash("successMessage", "Story added successfully");
     res.redirect("/dashboard");
   } catch (error) {
     console.log(error);
@@ -23,6 +24,7 @@ controller.addStory = async (req, res) => {
 controller.deleteStory = async (req, res) => {
   try {
     await Story.findByIdAndDelete(req.params.id);
+    req.flash("successMessage", "Story deleted successfully");
     res.redirect("/dashboard");
   } catch (error) {
     console.log(error);
@@ -48,6 +50,7 @@ controller.editStory = async (req, res) => {
       status,
       body,
     }).lean();
+    req.flash("successMessage", "Story edited successfully");
     res.redirect("/dashboard");
   } catch (error) {
     console.log(error);

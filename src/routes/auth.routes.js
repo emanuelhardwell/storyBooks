@@ -22,6 +22,7 @@ router.get(
 // @route   /auth/logout
 router.get("/logout", (req, res) => {
   req.logout();
+  req.flash("successMessage", "You are logged out now.");
   res.redirect("/");
 });
 
