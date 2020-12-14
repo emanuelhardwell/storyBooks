@@ -1,0 +1,31 @@
+{{!-- --}}
+{{!-- --}}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <blockquote class="blockquote">
+                        <h5 class="fw-bold text-center">{{oneStory.title}}</h5>
+                        <p class="">{{oneStory.body}}</p>
+                        <footer class="blockquote-footer text-end"> {{timeago createdAt}}</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        {{!-- info user --}}
+        <div class="col-md-4">
+            <div class="card pt-3">
+                <h5 class="text-center">{{oneStory.user.displayName}}</h5>
+                <img src="{{oneStory.user.image}}" alt="image User" class="img-thumbnail img2 mx-auto">
+                <div class="card-body">
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <a href="/stories/user/{{oneStory.user._id}}" class="text-decoration-none">More from {{oneStory.user.firstName}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

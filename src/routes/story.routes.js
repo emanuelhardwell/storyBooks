@@ -15,4 +15,8 @@ router.post("/edit/:id", isAuthenticated, stories.editStory);
 
 router.get("/all", isAuthenticated, stories.showAllStory);
 
+router.get("/:id", isAuthenticated, stories.showOneStory);
+
+router.get("/user/:userId", isAuthenticated, stories.showStoryUser);
+
 module.exports = router;

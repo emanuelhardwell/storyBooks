@@ -68,4 +68,31 @@ controller.showAllStory = async (req, res) => {
   }
 };
 
+controller.showOneStory = async (req, res) => {
+  try {
+    const oneStory = await Story.findById(req.params.id)
+      .populate("user")
+      .lean();
+    res.render("stories/show", { oneStory });
+  } catch (error) {
+    console.log(error);
+    res.render("errors/500");
+  }
+};
+
+controller.showStoryUser = async (req, res) => {
+  try {
+    const allStory = await Story.find({
+      user: req.params.userId,
+      status: "public",
+    })
+      .populate("user")
+      .lean();
+    res.render("stories/all", { allStory });
+  } catch (error) {
+    console.log(error);
+    res.render("errors/500");
+  }
+};
+
 module.exports = controller;
